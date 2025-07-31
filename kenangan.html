@@ -20,8 +20,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
       margin-top: 2rem;
+      gap: 2rem;
     }
 
     .card {
@@ -34,7 +34,7 @@
       opacity: 0;
       transform: translateY(30px);
       visibility: hidden;
-      transition: all 0.8s ease;
+      transition: all 1.4s ease;
     }
 
     .card.visible {
@@ -50,7 +50,7 @@
     }
 
     .caption {
-      padding: 1rem;
+      padding: 0.8rem;
       font-size: 1rem;
       color: #555;
       background-color: #fff9f9;
@@ -60,12 +60,12 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      font-size: 2rem;
+      font-size: 2.5rem;
       background-color: #ffb6c1;
       border: none;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       cursor: pointer;
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -88,7 +88,6 @@
   <button class="music-button" onclick="toggleMusic()">🎵</button>
 
   <div class="gallery">
-    <!-- Gambar + Caption -->
     <div class="card"><img src="https://i.ibb.co/jvPbnF3s/35e9b600-7657-4df3-8237-e9c101dd111e.jpg"><p class="caption">Senyumnya bikin adem 🥰</p></div>
     <div class="card"><img src="https://i.ibb.co/rfZhrX05/9a8f9082-5f90-4935-ad95-36f1bd9980a4.jpg"><p class="caption">Momen candid yang lucu 😄</p></div>
     <div class="card"><img src="https://i.ibb.co/pvgQf2FN/034a6b15-0012-4c31-bdf8-99e021bad973.jpg"><p class="caption">Waktu jalan-jalan bareng 🌆</p></div>
@@ -115,6 +114,7 @@
       else music.pause();
     }
 
+    // Jalankan musik setelah ada interaksi
     function startMusicOnce() {
       music.play().catch(() => {});
       window.removeEventListener('click', startMusicOnce);
@@ -126,24 +126,21 @@
     window.addEventListener('touchstart', startMusicOnce);
     window.addEventListener('scroll', startMusicOnce);
 
-    // Fade-in animasi untuk scroll atas dan bawah
-    document.addEventListener("DOMContentLoaded", () => {
-      const cards = document.querySelectorAll('.card');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-          }
-        });
-      }, {
-        threshold: 0.1
+    // Animasi scroll atas bawah
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
       });
-
-      cards.forEach(card => observer.observe(card));
+    }, {
+      threshold: 0.1
     });
+
+    cards.forEach(card => observer.observe(card));
   </script>
 </body>
 </html>
-
