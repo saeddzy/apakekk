@@ -6,7 +6,6 @@
   <style>
     body {
       margin: 0;
-      padding: 2rem;
       background-color: #fff0f5;
       font-family: 'Inter', sans-serif;
       text-align: center;
@@ -14,78 +13,61 @@
 
     h1 {
       color: #d6336c;
+      padding-top: 2rem;
     }
 
     .gallery {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 2rem;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
     }
 
     .card {
-      background: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      overflow: hidden;
-      max-width: 250px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      box-sizing: border-box;
     }
 
     .card img {
-      width: 100%;
-      height: auto;
-      display: block;
+      max-width: 90%;
+      max-height: 70vh;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .caption {
-      padding: 0.8rem;
-      font-size: 0.95rem;
+      margin-top: 1rem;
+      font-size: 1.1rem;
       color: #555;
       background-color: #fff9f9;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
-    button {
-      background: #ffb6c1;
-      color: #000;
-      padding: 0.6rem 1.2rem;
+    .music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.8rem;
+      background-color: #ffb6c1;
       border: none;
-      border-radius: 999px;
-      font-weight: bold;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
       cursor: pointer;
-      margin-top: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    button:hover {
-      background: #ffcdd5;
-    }
-.music-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 1.8rem;
-  background-color: #ffb6c1;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
   </style>
 </head>
 <body>
@@ -120,7 +102,6 @@
   </div>
 
   <script>
-    // Musik auto-play saat interaksi
     const music = document.getElementById('bgMusic');
 
     function startMusicOnce() {
@@ -134,27 +115,12 @@
     window.addEventListener('touchstart', startMusicOnce);
     window.addEventListener('scroll', startMusicOnce);
 
-    // Tombol Play/Pause
     function toggleMusic() {
       if (music.paused) music.play();
       else music.pause();
     }
-
-    // Fade in on scroll (atas bawah)
-    const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible'); // agar bisa muncul ulang saat scroll ke atas
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    cards.forEach(card => observer.observe(card));
   </script>
+
 </body>
 </html>
+
