@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kenangan Bareng Nabila 📸</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #fff0f5;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+    }
 
+    h1 {
+      color: #d6336c;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      overflow: hidden;
+      max-width: 250px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      padding: 0.8rem;
+      font-size: 0.95rem;
+      color: #555;
+      background-color: #fff9f9;
+    }
+
+    button {
+      background: #ffb6c1;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffcdd5;
+    }
+.music-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.8rem;
+  background-color: #ffb6c1;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  </style>
+</head>
+<body>
+
+  <h1>Kenangan Bareng Nabila 📸</h1>
+
+  <!-- Musik -->
+  <audio id="bgMusic" loop>
+    <source src="Pamungkas - Monolog (Lyrics Video).mp3" type="audio/mpeg">
+    Browsermu tidak mendukung audio.
+  </audio>
+
+  <button class="music-button" onclick="toggleMusic()">🎵</button>
+
+  <div class="gallery">
+    <div class="card"><img src="https://i.ibb.co/jvPbnF3s/35e9b600-7657-4df3-8237-e9c101dd111e.jpg"><p class="caption">Senyumnya bikin adem 🥰</p></div>
+    <div class="card"><img src="https://i.ibb.co/rfZhrX05/9a8f9082-5f90-4935-ad95-36f1bd9980a4.jpg"><p class="caption">Momen candid yang lucu 😄</p></div>
+    <div class="card"><img src="https://i.ibb.co/pvgQf2FN/034a6b15-0012-4c31-bdf8-99e021bad973.jpg"><p class="caption">Waktu jalan-jalan bareng 🌆</p></div>
+    <div class="card"><img src="https://i.ibb.co/cXg9YSqt/5f961cbd-366d-404b-8913-f6523e8e6c58.jpg"><p class="caption">Tatapannya lembut banget 💖</p></div>
+    <div class="card"><img src="https://i.ibb.co/4Rt85tFc/184e11e2-5808-4487-a184-e0391917905f.jpg"><p class="caption">Sore yang syahdu bareng 😌</p></div>
+    <div class="card"><img src="https://i.ibb.co/4wm3c8M5/f44f8287-4a1c-47ba-83fa-dbbeb8544252.jpg"><p class="caption">Waktu ngopi bareng ☕</p></div>
+    <div class="card"><img src="https://i.ibb.co/k2grPWjG/1c83280b-85e6-4720-bd3d-8375f230f74b.jpg"><p class="caption">Senja, kamu, dan kenangan 🎇</p></div>
+    <div class="card"><img src="https://i.ibb.co/3YGw0JyB/3ed422d2-0a69-4d57-a2c3-d8a0d53c1cd7.jpg"><p class="caption">Gaya andalan 😎</p></div>
+    <div class="card"><img src="https://i.ibb.co/JWsR5tgp/bcd1e7cf-6827-45e8-867c-5a48d9eab056.jpg"><p class="caption">Waktu masih malu-malu 🤭</p></div>
+    <div class="card"><img src="https://i.ibb.co/yFTd8tG3/b5cb4c83-5b91-4c97-b354-edbd3d5521c4.jpg"><p class="caption">Pose candid andalan 🎬</p></div>
+    <div class="card"><img src="https://i.ibb.co/cSkK79Pv/ea51eddb-3839-4d01-9691-f6230d98ffdf.jpg"><p class="caption">Tatapan tajam 💘</p></div>
+    <div class="card"><img src="https://i.ibb.co/bg95KY83/64824347-f57a-4685-86ab-351beaf8edb8.jpg"><p class="caption">Kenangan di taman 🌺</p></div>
+    <div class="card"><img src="https://i.ibb.co/RkMy9SLj/3dcd67e4-9d5d-4d68-8694-d135c2270a26.jpg"><p class="caption">Momen santai 🤍</p></div>
+    <div class="card"><img src="https://i.ibb.co/NgdZ1q4B/41380b70-b7be-4a51-aed1-3decb98fd6cd.jpg"><p class="caption">Baru bangun tidur nih 😆</p></div>
+    <div class="card"><img src="https://i.ibb.co/G4kZGnyq/ef9887c3-448e-419a-8b99-07376d2ae779.jpg"><p class="caption">Cantik alami 💐</p></div>
+    <div class="card"><img src="https://i.ibb.co/LdQ4Lq3L/2cab5358-4a75-46da-bce3-4b4351e2ad3c.jpg"><p class="caption">Nabila versi candid 📷</p></div>
+  </div>
+
+  <script>
+    // Musik auto-play saat interaksi
+    const music = document.getElementById('bgMusic');
+
+    function startMusicOnce() {
+      music.play().catch(() => {});
+      window.removeEventListener('click', startMusicOnce);
+      window.removeEventListener('touchstart', startMusicOnce);
+      window.removeEventListener('scroll', startMusicOnce);
+    }
+
+    window.addEventListener('click', startMusicOnce);
+    window.addEventListener('touchstart', startMusicOnce);
+    window.addEventListener('scroll', startMusicOnce);
+
+    // Tombol Play/Pause
+    function toggleMusic() {
+      if (music.paused) music.play();
+      else music.pause();
+    }
+
+    // Fade in on scroll (atas bawah)
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible'); // agar bisa muncul ulang saat scroll ke atas
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
