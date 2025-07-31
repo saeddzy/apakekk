@@ -14,14 +14,14 @@
 
     h1 {
       color: #d6336c;
-      margin-bottom: 2rem;
     }
 
     .gallery {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
       align-items: center;
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
     .card {
@@ -29,16 +29,18 @@
       border-radius: 1rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       overflow: hidden;
-      width: 90vw;
+      width: 100%;
       max-width: 600px;
       opacity: 0;
       transform: translateY(30px);
+      visibility: hidden;
       transition: all 0.8s ease;
     }
 
     .card.visible {
       opacity: 1;
       transform: translateY(0);
+      visibility: visible;
     }
 
     .card img {
@@ -51,7 +53,7 @@
       padding: 1rem;
       font-size: 1rem;
       color: #555;
-      background-color: #fff;
+      background-color: #fff9f9;
     }
 
     .music-button {
@@ -82,6 +84,7 @@
     <source src="Pamungkas - Monolog (Lyrics Video).mp3" type="audio/mpeg">
     Browsermu tidak mendukung audio.
   </audio>
+
   <button class="music-button" onclick="toggleMusic()">🎵</button>
 
   <div class="gallery">
@@ -106,6 +109,11 @@
   <script>
     const music = document.getElementById('bgMusic');
 
+    function toggleMusic() {
+      if (music.paused) music.play();
+      else music.pause();
+    }
+
     function startMusicOnce() {
       music.play().catch(() => {});
       window.removeEventListener('click', startMusicOnce);
@@ -117,21 +125,21 @@
     window.addEventListener('touchstart', startMusicOnce);
     window.addEventListener('scroll', startMusicOnce);
 
-    function toggleMusic() {
-      if (music.paused) music.play();
-      else music.pause();
-    }
-
-    const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    // Fade-in animasi dengan IntersectionObserver
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll('.card');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
       });
-    }, { threshold: 0.1 });
 
-    cards.forEach(card => observer.observe(card));
+      cards.forEach(card => observer.observe(card));
+    });
   </script>
 </body>
 </html>
