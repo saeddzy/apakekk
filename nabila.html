@@ -1,1 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Nabila!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000000;
+      --clr-1: #ffd1dc;
+      --clr-2: #fff2cc;
+      --clr-3: #fbe4d8;
+      --clr-4: #f3f3f3;
+      --blur: 1rem;
+      --fs: clamp(2rem, 6vw, 4rem);
+      --ls: clamp(-1.5px, -0.25vw, -2.5px);
+    }
 
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+      overflow-x: hidden;
+    }
+
+    .aurora {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .aurora__item {
+      position: absolute;
+      width: 60vw; height: 60vw;
+      background-color: var(--clr-1);
+      border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+      filter: blur(var(--blur));
+      mix-blend-mode: overlay;
+    }
+
+    .aurora__item:nth-of-type(1) {
+      top: -50%;
+      animation: aurora-border 6s ease-in-out infinite, aurora-1 12s ease-in-out infinite alternate;
+    }
+    .aurora__item:nth-of-type(2) {
+      background-color: var(--clr-3);
+      right: 0; top: 0;
+      animation: aurora-border 6s ease-in-out infinite, aurora-2 12s ease-in-out infinite alternate;
+    }
+    .aurora__item:nth-of-type(3) {
+      background-color: var(--clr-2);
+      left: 0; bottom: 0;
+      animation: aurora-border 6s ease-in-out infinite, aurora-3 8s ease-in-out infinite alternate;
+    }
+    .aurora__item:nth-of-type(4) {
+      background-color: var(--clr-4);
+      right: 0; bottom: -50%;
+      animation: aurora-border 6s ease-in-out infinite, aurora-4 24s ease-in-out infinite alternate;
+    }
+
+    @keyframes aurora-border {
+      0% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
+      25% { border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%; }
+      50% { border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%; }
+      75% { border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%; }
+      100% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
+    }
+
+    @keyframes aurora-1 {
+      0% { top: 0; right: 0; }
+      50% { top: 100%; right: 75%; }
+      75% { top: 100%; right: 25%; }
+      100% { top: 0; right: 0; }
+    }
+
+    @keyframes aurora-2 {
+      0% { top: -50%; left: 0%; }
+      60% { top: 100%; left: 75%; }
+      85% { top: 100%; left: 25%; }
+      100% { top: -50%; left: 0%; }
+    }
+
+    @keyframes aurora-3 {
+      0% { bottom: 0; left: 0; }
+      40% { bottom: 100%; left: 75%; }
+      65% { bottom: 40%; left: 50%; }
+      100% { bottom: 0; left: 0; }
+    }
+
+    @keyframes aurora-4 {
+      0% { bottom: -50%; right: 0; }
+      50% { bottom: 0%; right: 40%; }
+      90% { bottom: 50%; right: 25%; }
+      100% { bottom: -50%; right: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      background-color: rgba(0,0,0,0.4);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .title {
+      font-size: var(--fs);
+      font-weight: 800;
+      letter-spacing: var(--ls);
+      margin-bottom: 0.5rem;
+    }
+
+    .photo {
+      width: 200px;
+      border-radius: 1rem;
+      margin: 1rem auto;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .message {
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+
+    button {
+      background: #ff9aa2;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      background: #fcbfba;
+      color: #000;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .modal-content {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 2rem;
+      text-align: center;
+      animation: fadeZoom 0.4s ease-out;
+      max-width: 300px;
+    }
+
+    @keyframes fadeZoom {
+      0% { opacity: 0; transform: scale(0.6); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    #countdown {
+      color: #ffc640;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+      text-shadow: 0 0 5px rgba(255,255,255,0.2);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.85; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 99;
+    }
+
+    .floating-btn button,
+    .floating-btn a {
+      background-color: #ffb6b9;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: none;
+      cursor: pointer;
+    }
+
+    .floating-btn button:hover,
+    .floating-btn a:hover {
+      background-color: #ffc9cc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aurora">
+    <div class="aurora__item"></div>
+    <div class="aurora__item"></div>
+    <div class="aurora__item"></div>
+    <div class="aurora__item"></div>
+  </div>
+
+  <div class="container">
+    <h1 class="title">Happy Birthday, Nabila! 🎉</h1>
+    <div id="countdown">Loading...</div>
+    <img src="https://i.ibb.co/FbMXwymg/IMG-6154.jpg" class="photo" alt="Foto Nabila" />
+    <p class="message" id="message">
+      Balon pink terbang ke awan,<br/>
+      Suasana hangat penuh cinta.<br/>
+      Nabila ulang tahun, banyak yang perhatian,<br/>
+      Tapi hatinya cuma untuk satu nama 💗
+    </p>
+    <button onclick="nextMessage()">Klik lagi yuk!</button>
+  </div>
+
+  <div class="floating-btn">
+    <button onclick="toggleMusic()">🔊</button>
+    <button onclick="openModal()">🎁</button>
+    <a href="kenangan.html">🚫</a>
+  </div>
+
+  <div id="giftModal" class="modal" onclick="closeModal()">
+    <div class="modal-content">
+      <p>🎁 Hadiahnya menyusul di Bandung 🤪</p>
+      <button onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-longnight.mp3" type="audio/mpeg">
+    Browsermu tidak mendukung audio.
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const messages = [
+      "Semoga semua harapan dan impian kamu tercapai",
+      "Jangan marah-marah terus yaa 😁",
+      "Semangat terus, Sabar jalanin hidup",
+      "Selamat ulang tahun yang ke 210 Abad🤭",
+      "Tetap semangat belajarnya, cape boleh nyerah jangan 🔥",
+      "Makan nya dijaga yg teratur, kurangin minum kopi nek",
+      "Merokok nya dihilangin aduuh 🌸",
+      "hmm makan-makan nich 👻"
+    ];
+    let currentIndex = 0;
+    const messageElement = document.getElementById('message');
+    const music = document.getElementById('bgMusic');
+
+    function nextMessage() {
+      currentIndex = (currentIndex + 1) % messages.length;
+      messageElement.innerText = messages[currentIndex];
+    }
+
+    function openModal() {
+      document.getElementById('giftModal').style.display = 'flex';
+      confetti({ particleCount: 180, spread: 120, origin: { y: 0.6 } });
+      if (music.paused) music.play();
+    }
+
+    function closeModal() {
+      document.getElementById('giftModal').style.display = 'none';
+    }
+
+    function toggleMusic() {
+      if (music.paused) music.play();
+      else music.pause();
+    }
+
+    function startMusicOnce() {
+      if (music.paused) music.play().catch(() => {});
+      window.removeEventListener('click', startMusicOnce);
+      window.removeEventListener('touchstart', startMusicOnce);
+      window.removeEventListener('scroll', startMusicOnce);
+    }
+
+    window.addEventListener('click', startMusicOnce);
+    window.addEventListener('touchstart', startMusicOnce);
+    window.addEventListener('scroll', startMusicOnce);
+
+    const targetDate = new Date("2025-08-01T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        countdown.innerText = "🎉";
+        confetti({ particleCount: 200, spread: 180, origin: { y: 0.6 } });
+        setTimeout(() => {
+          confetti({ particleCount: 150, spread: 180 });
+        }, 1000);
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerText = `Hitung mundur ke 1 Agustus 2025: ${days}h ${hours}j ${minutes}m ${seconds}d`;
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
